@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import BlurText from './BlurText'
 import Grainient from './Grainient'
+import TypeText from './TypeText'
 import './App.css'
 
 const slides = [
@@ -8,7 +9,8 @@ const slides = [
     number: '01',
     eyebrow: '',
     title: 'URUGUAY INNOVA',
-    copy: 'Descripción.',
+    copy: '"Uruguay Innova surge como una propuesta estratégica de política pública con el objetivo de contribuir al desarrollo económico y social del país, mejorando la productividad y la competitividad mediante el uso del conocimiento y la innovación."',
+    source: 'Fuente: Uruguay Innova – Gobierno de Uruguay (www.gub.uy/uruguay-innova)',
     colors: ['#25418e', '#2856d6', '#658aed'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
@@ -21,6 +23,7 @@ const slides = [
     eyebrow: '',
     title: 'SEGUNDA PLACA',
     copy: 'Descripción.',
+    source: '',
     colors: ['#17336f', '#416cc4', '#8daef4'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
@@ -33,6 +36,7 @@ const slides = [
     eyebrow: '',
     title: 'TERCERA PLACA',
     copy: 'Descripción.',
+    source: '',
     colors: ['#416cc4', '#25418e', '#b8cafa'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
@@ -44,8 +48,13 @@ const slides = [
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const [copyCompletedFor, setCopyCompletedFor] = useState(null)
   const touchStartX = useRef(null)
   const slide = slides[currentSlide]
+
+  const handleCopyComplete = useCallback(() => {
+    setCopyCompletedFor(currentSlide)
+  }, [currentSlide])
 
   const goToSlide = (nextSlide) => {
     setCurrentSlide((nextSlide + slides.length) % slides.length)
@@ -117,7 +126,8 @@ function App() {
                 className="slide-eyebrow"
                 animateBy="words"
                 direction="top"
-                delay={80}
+                delay={40}
+                stepDuration={0.2}
               />
             )}
             <BlurText
@@ -128,14 +138,23 @@ function App() {
               direction="top"
               delay={120}
             />
-            <BlurText
+            <TypeText
               key={`copy-${slide.number}`}
               text={slide.copy}
               className="slide-copy"
-              animateBy="words"
-              direction="top"
-              delay={80}
+              typingSpeed={8}
+              onComplete={handleCopyComplete}
             />
+            {slide.source && (
+              <TypeText
+                key={`source-${slide.number}`}
+                text={slide.source}
+                className="slide-source"
+                typingSpeed={7}
+                start={copyCompletedFor === currentSlide}
+                style={{ visibility: copyCompletedFor === currentSlide ? 'visible' : 'hidden' }}
+              />
+            )}
           </div>
 
           <div className={`collage collage-${slide.number}`} aria-label={`Imágenes de la placa ${slide.number}`}>

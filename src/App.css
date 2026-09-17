@@ -81,11 +81,12 @@
   gap: 0 0.25em;
 }
 
+
 .blur-text-word {
   display: inline-block;
   opacity: 0;
   filter: blur(10px);
-  animation: blur-text-in var(--blur-text-duration, 0.35s) ease-out var(--blur-text-delay, 0s) forwards;
+  animation: blur-text-in var(--blur-text-duration, 0.35s) ease-out calc(var(--blur-text-start-delay, 0s) + var(--blur-text-delay, 0s)) forwards;
   will-change: transform, filter, opacity;
 }
 
@@ -126,7 +127,18 @@
 .slide-copy {
   max-width: 430px;
   margin: 28px 0 0;
+  height: 9em;
+  overflow: hidden;
   font: 400 18px/1.5 'Space Grotesk', sans-serif;
+}
+
+.slide-source {
+  max-width: 430px;
+  margin: 12px 0 0;
+  height: 2.8em;
+  overflow: hidden;
+  color: rgba(255, 255, 255, 0.62);
+  font: 400 12px/1.4 'Space Grotesk', sans-serif;
 }
 
 .collage {
@@ -323,6 +335,7 @@
   .slide-copy {
     margin-right: auto;
     margin-left: auto;
+    height: 10.5em;
   }
 
   .slide-number {
