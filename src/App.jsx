@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import BlurText from './BlurText'
 import Grainient from './Grainient'
 import './App.css'
@@ -44,10 +44,25 @@ const slides = [
 
 function App() {
   const [currentSlide, setCurrentSlide] = useState(0)
+  const touchStartX = useRef(null)
   const slide = slides[currentSlide]
 
   const goToSlide = (nextSlide) => {
     setCurrentSlide((nextSlide + slides.length) % slides.length)
+  }
+
+  const handleTouchStart = (event) => {
+    touchStartX.current = event.touches[0].clientX
+  }
+
+  const handleTouchEnd = (event) => {
+    if (touchStartX.current === null) return
+
+    const distance = event.changedTouches[0].clientX - touchStartX.current
+    touchStartX.current = null
+
+    if (Math.abs(distance) < 50) return
+    goToSlide(currentSlide + (distance < 0 ? 1 : -1))
   }
 
   useEffect(() => {
@@ -86,7 +101,12 @@ function App() {
         centerY={0}
         zoom={0.9}
       />
-      <section className="deck" aria-label="Presentación">
+      <section
+        className="deck"
+        aria-label="Presentación"
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
+      >
         <p className="slide-number">{slide.number} / 0{slides.length}</p>
         <div className="slide-stage">
           <div className="slide" key={slide.number}>
