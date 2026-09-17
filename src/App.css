@@ -17,7 +17,7 @@
   position: relative;
   z-index: 1;
   height: 100vh;
-  padding: 40px clamp(24px, 9vw, 144px);
+  padding: 40px clamp(24px, 4vw, 64px) 40px clamp(24px, 9vw, 144px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -29,16 +29,17 @@
 }
 
 .slide {
-  width: min(46vw, 620px);
+  width: min(40vw, 620px);
   max-width: 700px;
 }
 
 .slide-stage {
+  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  gap: clamp(32px, 7vw, 112px);
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: calc(100vw - clamp(24px, 9vw, 144px));
+  min-height: min(55vh, 460px);
 }
 
 .slide-number,
@@ -63,6 +64,10 @@
   color: rgba(255, 255, 255, 0.76);
 }
 
+.slide-eyebrow:empty {
+  display: none;
+}
+
 .slide-title {
   max-width: 700px;
   margin: 0;
@@ -81,8 +86,10 @@
 }
 
 .collage {
-  position: relative;
-  flex: 0 0 min(38vw, 500px);
+  position: absolute;
+  top: 0;
+  right: clamp(24px, 4vw, 64px);
+  width: 50vw;
   height: min(55vh, 460px);
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
@@ -238,13 +245,19 @@
   }
 
   .slide-stage {
+    position: static;
     flex-direction: column;
     justify-content: center;
     gap: 28px;
+    width: 100%;
+    min-height: auto;
   }
 
   .collage {
-    flex-basis: auto;
+    position: relative;
+    top: auto;
+    right: auto;
+    transform: none;
     width: min(82vw, 420px);
     height: 250px;
   }

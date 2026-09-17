@@ -8,8 +8,8 @@ const slides = [
     number: '01',
     eyebrow: '',
     title: 'URUGUAY INNOVA',
-    copy: 'Esta es la primera placa de tu presentación.',
-    colors: ['#25418e', '#25418e', '#658aed'],
+    copy: 'Descripción.',
+    colors: ['#25418e', '#2856d6', '#658aed'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
       { src: 'https://medios.presidencia.gub.uy/tav_portal/2025/noticias/AN_559/fgr_09.jpg', alt: 'Espacio de trabajo moderno' },
@@ -19,7 +19,7 @@ const slides = [
   {
     number: '02',
     eyebrow: '',
-    title: 'Segunda placa',
+    title: 'SEGUNDA PLACA',
     copy: 'Descripción.',
     colors: ['#17336f', '#416cc4', '#8daef4'],
     images: [
@@ -31,7 +31,7 @@ const slides = [
   {
     number: '03',
     eyebrow: '',
-    title: 'Tercera placa',
+    title: 'TERCERA PLACA',
     copy: 'Descripción.',
     colors: ['#416cc4', '#25418e', '#b8cafa'],
     images: [
