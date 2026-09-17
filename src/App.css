@@ -1,0 +1,272 @@
+.grainient {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.grainient-container {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.deck {
+  position: relative;
+  z-index: 1;
+  height: 100vh;
+  padding: 40px clamp(24px, 9vw, 144px);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 56px;
+  color: #ffffff;
+  text-align: left;
+}
+
+.slide {
+  width: min(46vw, 620px);
+  max-width: 700px;
+}
+
+.slide-stage {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: clamp(32px, 7vw, 112px);
+}
+
+.slide-number,
+.slide-eyebrow {
+  margin: 0;
+  font: 800 12px/1.2 'Nunito', sans-serif;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.slide-number {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  margin: 0;
+  transform: translateX(-50%);
+  opacity: 0.58;
+}
+
+.slide-eyebrow {
+  margin-bottom: 18px;
+  color: rgba(255, 255, 255, 0.76);
+}
+
+.slide-title {
+  max-width: 700px;
+  margin: 0;
+  font: 800 clamp(32px, 5vw, 64px)/0.98 'Nunito', sans-serif;
+  letter-spacing: -0.04em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 0 0.25em;
+}
+
+.slide-copy {
+  max-width: 430px;
+  margin: 28px 0 0;
+  font: 400 18px/1.5 'Nunito', sans-serif;
+}
+
+.collage {
+  position: relative;
+  flex: 0 0 min(38vw, 500px);
+  height: min(55vh, 460px);
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  grid-template-rows: 1.1fr 0.9fr;
+  gap: clamp(12px, 1.8vw, 24px);
+}
+
+.collage-frame {
+  position: relative;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
+  border-radius: 18px;
+  box-sizing: border-box;
+}
+
+.collage-image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  border-radius: inherit;
+}
+
+.collage-frame-1 {
+  grid-row: 1 / 3;
+  grid-column: 1;
+}
+
+.collage-frame-2 {
+  grid-row: 1;
+  grid-column: 2;
+}
+
+.collage-frame-3 {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.collage-02 {
+  grid-template-columns: 0.85fr 1.15fr;
+}
+
+.collage-02 .collage-frame-1 {
+  grid-row: 1;
+  grid-column: 1;
+}
+
+.collage-02 .collage-frame-2 {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.collage-02 .collage-frame-3 {
+  grid-row: 1 / 3;
+  grid-column: 2;
+}
+
+.collage-03 {
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 0.85fr 1.15fr;
+}
+
+.collage-03 .collage-frame-1 {
+  grid-row: 1;
+  grid-column: 1 / 3;
+}
+
+.collage-03 .collage-frame-2 {
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.collage-03 .collage-frame-3 {
+  grid-row: 2;
+  grid-column: 2;
+}
+
+.slide-controls {
+  position: absolute;
+  left: 50%;
+  bottom: 40px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  transform: translateX(-50%);
+}
+
+.slide-controls > button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 0;
+  color: #ffffff;
+  background: transparent;
+  cursor: pointer;
+}
+
+.slide-controls > button:focus,
+.slide-controls > button:focus-visible {
+  border: 0;
+  outline: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.arrow-icon {
+  display: block;
+  width: 13px;
+  height: 13px;
+  margin: auto;
+  border-top: 3px solid #ffffff;
+  border-right: 3px solid #ffffff;
+}
+
+.arrow-icon-prev {
+  transform: rotate(-135deg);
+}
+
+.arrow-icon-next {
+  transform: rotate(45deg);
+}
+
+.slide-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.slide-dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+}
+
+.slide-dots button.is-active {
+  background: #ffffff;
+  transform: scale(1.5);
+}
+
+@media (max-width: 640px) {
+  .deck {
+    align-items: center;
+    text-align: center;
+  }
+
+  .slide {
+    width: 100%;
+  }
+
+  .slide-stage {
+    flex-direction: column;
+    justify-content: center;
+    gap: 28px;
+  }
+
+  .collage {
+    flex-basis: auto;
+    width: min(82vw, 420px);
+    height: 250px;
+  }
+
+  .slide-title {
+    justify-content: center;
+  }
+
+  .slide-copy {
+    margin-right: auto;
+    margin-left: auto;
+  }
+
+  .slide-number {
+    top: 24px;
+  }
+
+  .slide-controls {
+    bottom: 24px;
+  }
+
+  .slide-title {
+    font-size: clamp(32px, 10vw, 52px);
+  }
+}
