@@ -240,11 +240,14 @@
   .deck {
     height: 100vh;
     min-height: 100vh;
+    overflow: hidden;
   }
 
   .deck {
     align-items: center;
     text-align: center;
+    padding: 56px 24px 120px;
+    gap: 0;
   }
 
   .slide {
@@ -255,7 +258,7 @@
     position: static;
     flex-direction: column;
     justify-content: center;
-    gap: 28px;
+    gap: 16px;
     width: 100%;
     min-height: auto;
   }
@@ -266,7 +269,7 @@
     right: auto;
     transform: none;
     width: min(82vw, 420px);
-    height: 250px;
+    height: min(30vh, 220px);
   }
 
   .slide-title {
@@ -283,7 +286,7 @@
   }
 
   .slide-controls {
-    bottom: clamp(48px, 8vh, 72px);
+    bottom: clamp(72px, 14vh, 110px);
   }
 
   .slide-title {
