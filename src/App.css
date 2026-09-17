@@ -235,6 +235,13 @@
 }
 
 @media (max-width: 640px) {
+  .grainient,
+  .grainient-container,
+  .deck {
+    height: 100vh;
+    min-height: 100vh;
+  }
+
   .deck {
     align-items: center;
     text-align: center;
@@ -276,7 +283,7 @@
   }
 
   .slide-controls {
-    bottom: 24px;
+    bottom: clamp(48px, 8vh, 72px);
   }
 
   .slide-title {
