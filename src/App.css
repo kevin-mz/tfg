@@ -1,6 +1,7 @@
 .grainient {
   position: relative;
   height: 100vh;
+  min-height: 560px;
   overflow: hidden;
   background: #ffffff;
 }
@@ -16,21 +17,22 @@
 .deck {
   position: relative;
   z-index: 1;
-  height: 100vh;
-  padding: 40px clamp(24px, 4vw, 64px) 40px clamp(24px, 9vw, 144px);
+  height: 100%;
+  min-height: 560px;
+  padding: clamp(32px, 5vh, 64px) clamp(32px, 5vw, 96px);
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 56px;
+  gap: 40px;
   color: #ffffff;
   text-align: left;
   touch-action: pan-y;
 }
 
 .slide {
-  width: min(40vw, 620px);
+  width: clamp(360px, 38vw, 620px);
   max-width: 700px;
 }
 
@@ -39,8 +41,8 @@
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  width: calc(100vw - clamp(24px, 9vw, 144px));
-  min-height: min(55vh, 460px);
+  width: 100%;
+  min-height: clamp(360px, 52vh, 560px);
 }
 
 .slide-number,
@@ -125,15 +127,15 @@
 }
 
 .slide-copy {
-  max-width: 430px;
-  margin: 28px 0 0;
-  height: 9em;
+  max-width: 500px;
+  margin: 24px 0 0;
+  height: 8.5em;
   overflow: hidden;
   font: 400 18px/1.5 'Space Grotesk', sans-serif;
 }
 
 .slide-source {
-  max-width: 430px;
+  max-width: 500px;
   margin: 12px 0 0;
   height: 2.8em;
   overflow: hidden;
@@ -144,9 +146,9 @@
 .collage {
   position: absolute;
   top: 0;
-  right: clamp(24px, 4vw, 64px);
-  width: 50vw;
-  height: min(55vh, 460px);
+  right: clamp(16px, 2vw, 32px);
+  width: clamp(440px, 48vw, 720px);
+  height: clamp(360px, 52vh, 560px);
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   grid-template-rows: 1.1fr 0.9fr;
@@ -290,7 +292,7 @@
   transform: scale(1.5);
 }
 
-@media (max-width: 640px) {
+@media (max-width: 900px) {
   .grainient,
   .grainient-container,
   .deck {
@@ -302,19 +304,20 @@
   .deck {
     align-items: center;
     text-align: center;
-    padding: 56px 24px 120px;
+    padding: clamp(52px, 8vh, 72px) clamp(20px, 6vw, 48px) 112px;
     gap: 0;
   }
 
   .slide {
     width: 100%;
+    max-width: 720px;
   }
 
   .slide-stage {
     position: static;
     flex-direction: column;
     justify-content: center;
-    gap: 16px;
+    gap: clamp(12px, 2vh, 20px);
     width: 100%;
     min-height: auto;
   }
@@ -324,8 +327,8 @@
     top: auto;
     right: auto;
     transform: none;
-    width: min(82vw, 420px);
-    height: min(30vh, 220px);
+    width: min(86vw, 520px);
+    height: clamp(190px, 29vh, 300px);
   }
 
   .slide-title {
@@ -335,7 +338,7 @@
   .slide-copy {
     margin-right: auto;
     margin-left: auto;
-    height: 10.5em;
+    height: 5.5em;
   }
 
   .slide-number {
@@ -347,6 +350,33 @@
   }
 
   .slide-title {
-    font-size: clamp(32px, 10vw, 52px);
+    font-size: clamp(30px, 8vw, 56px);
+  }
+}
+
+@media (max-width: 480px) {
+  .deck {
+    padding-right: 18px;
+    padding-left: 18px;
+    padding-bottom: 104px;
+  }
+
+  .collage {
+    width: min(90vw, 420px);
+    height: 22vh;
+    min-height: 150px;
+  }
+
+  .slide-copy {
+    height: 4.5em;
+    font-size: 16px;
+  }
+
+  .slide-source {
+    font-size: 11px;
+  }
+
+  .slide-controls {
+    bottom: 64px;
   }
 }
