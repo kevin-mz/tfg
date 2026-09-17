@@ -132,9 +132,44 @@ function Grainient({
   zoom = 0.9,
 }) {
   const containerRef = useRef(null)
+  const colorTargetsRef = useRef([
+    new Float32Array(hexToRgb(color1)),
+    new Float32Array(hexToRgb(color2)),
+    new Float32Array(hexToRgb(color3)),
+  ])
+  const settingsRef = useRef({
+    timeSpeed,
+    colorBalance,
+    warpStrength,
+    warpFrequency,
+    warpSpeed,
+    warpAmplitude,
+    blendAngle,
+    blendSoftness,
+    rotationAmount,
+    noiseScale,
+    grainAmount,
+    grainScale,
+    grainAnimated,
+    contrast,
+    gamma,
+    saturation,
+    centerX,
+    centerY,
+    zoom,
+  })
+
+  useEffect(() => {
+    colorTargetsRef.current = [
+      new Float32Array(hexToRgb(color1)),
+      new Float32Array(hexToRgb(color2)),
+      new Float32Array(hexToRgb(color3)),
+    ]
+  }, [color1, color2, color3])
 
   useEffect(() => {
     const container = containerRef.current
+    const settings = settingsRef.current
     const renderer = new Renderer({ webgl: 2, alpha: false, antialias: false, dpr: Math.min(window.devicePixelRatio || 1, 2) })
     const gl = renderer.gl
     const canvas = gl.canvas
@@ -149,27 +184,27 @@ function Grainient({
       uniforms: {
         iTime: { value: 0 },
         iResolution: { value: new Float32Array([1, 1]) },
-        uTimeSpeed: { value: timeSpeed },
-        uColorBalance: { value: colorBalance },
-        uWarpStrength: { value: warpStrength },
-        uWarpFrequency: { value: warpFrequency },
-        uWarpSpeed: { value: warpSpeed },
-        uWarpAmplitude: { value: warpAmplitude },
-        uBlendAngle: { value: blendAngle },
-        uBlendSoftness: { value: blendSoftness },
-        uRotationAmount: { value: rotationAmount },
-        uNoiseScale: { value: noiseScale },
-        uGrainAmount: { value: grainAmount },
-        uGrainScale: { value: grainScale },
-        uGrainAnimated: { value: grainAnimated ? 1 : 0 },
-        uContrast: { value: contrast },
-        uGamma: { value: gamma },
-        uSaturation: { value: saturation },
-        uCenterOffset: { value: new Float32Array([centerX, centerY]) },
-        uZoom: { value: zoom },
-        uColor1: { value: new Float32Array(hexToRgb(color1)) },
-        uColor2: { value: new Float32Array(hexToRgb(color2)) },
-        uColor3: { value: new Float32Array(hexToRgb(color3)) },
+        uTimeSpeed: { value: settings.timeSpeed },
+        uColorBalance: { value: settings.colorBalance },
+        uWarpStrength: { value: settings.warpStrength },
+        uWarpFrequency: { value: settings.warpFrequency },
+        uWarpSpeed: { value: settings.warpSpeed },
+        uWarpAmplitude: { value: settings.warpAmplitude },
+        uBlendAngle: { value: settings.blendAngle },
+        uBlendSoftness: { value: settings.blendSoftness },
+        uRotationAmount: { value: settings.rotationAmount },
+        uNoiseScale: { value: settings.noiseScale },
+        uGrainAmount: { value: settings.grainAmount },
+        uGrainScale: { value: settings.grainScale },
+        uGrainAnimated: { value: settings.grainAnimated ? 1 : 0 },
+        uContrast: { value: settings.contrast },
+        uGamma: { value: settings.gamma },
+        uSaturation: { value: settings.saturation },
+        uCenterOffset: { value: new Float32Array([settings.centerX, settings.centerY]) },
+        uZoom: { value: settings.zoom },
+        uColor1: { value: colorTargetsRef.current[0].slice() },
+        uColor2: { value: colorTargetsRef.current[1].slice() },
+        uColor3: { value: colorTargetsRef.current[2].slice() },
       },
     })
     const mesh = new Mesh(gl, { geometry: new Triangle(gl), program })
@@ -188,6 +223,13 @@ function Grainient({
     const startedAt = performance.now()
     const render = (now) => {
       program.uniforms.iTime.value = (now - startedAt) * 0.001
+      const colorUniforms = [program.uniforms.uColor1, program.uniforms.uColor2, program.uniforms.uColor3]
+      colorUniforms.forEach((uniform, index) => {
+        const target = colorTargetsRef.current[index]
+        target.forEach((channel, channelIndex) => {
+          uniform.value[channelIndex] += (channel - uniform.value[channelIndex]) * 0.06
+        })
+      })
       renderer.render({ scene: mesh })
       animationFrame = requestAnimationFrame(render)
     }
@@ -198,7 +240,7 @@ function Grainient({
       resizeObserver.disconnect()
       if (container.contains(canvas)) container.removeChild(canvas)
     }
-  }, [color1, color2, color3, timeSpeed, colorBalance, warpStrength, warpFrequency, warpSpeed, warpAmplitude, blendAngle, blendSoftness, rotationAmount, noiseScale, grainAmount, grainScale, grainAnimated, contrast, gamma, saturation, centerX, centerY, zoom])
+  }, [])
 
   return <div ref={containerRef} className="grainient-container" />
 }

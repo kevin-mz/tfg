@@ -9,6 +9,7 @@ const slides = [
     eyebrow: '',
     title: 'URUGUAY INNOVA',
     copy: 'Esta es la primera placa de tu presentación.',
+    colors: ['#25418e', '#25418e', '#658aed'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
       { src: 'https://medios.presidencia.gub.uy/tav_portal/2025/noticias/AN_559/fgr_09.jpg', alt: 'Espacio de trabajo moderno' },
@@ -20,6 +21,7 @@ const slides = [
     eyebrow: '',
     title: 'Segunda placa',
     copy: 'Descripción.',
+    colors: ['#17336f', '#416cc4', '#8daef4'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
       { src: 'https://medios.presidencia.gub.uy/tav_portal/2025/noticias/AN_559/fgr_09.jpg', alt: 'Espacio de trabajo moderno' },
@@ -31,6 +33,7 @@ const slides = [
     eyebrow: '',
     title: 'Tercera placa',
     copy: 'Descripción.',
+    colors: ['#416cc4', '#25418e', '#b8cafa'],
     images: [
       { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
       { src: 'https://medios.presidencia.gub.uy/tav_portal/2025/noticias/AN_559/fgr_09.jpg', alt: 'Espacio de trabajo moderno' },
@@ -60,9 +63,9 @@ function App() {
   return (
     <main className="grainient" aria-label="Animated gradient background">
       <Grainient
-        color1="#25418e"
-        color2="#25418e"
-        color3="#658aed"
+        color1={slide.colors[0]}
+        color2={slide.colors[1]}
+        color3={slide.colors[2]}
         timeSpeed={0.85}
         colorBalance={0}
         warpStrength={1}
