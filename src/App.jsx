@@ -6,7 +6,7 @@ import './App.css'
 const slides = [
   {
     number: '01',
-    eyebrow: 'Apertura',
+    eyebrow: '',
     title: 'URUGUAY INNOVA',
     copy: 'Esta es la primera placa de tu presentación.',
     images: [
@@ -17,24 +17,24 @@ const slides = [
   },
   {
     number: '02',
-    eyebrow: 'Desarrollo',
-    title: 'La información cambia. El ambiente permanece.',
-    copy: 'El fondo continúa su movimiento sin reiniciarse al cambiar de placa.',
+    eyebrow: '',
+    title: 'Segunda placa',
+    copy: 'Descripción.',
     images: [
-      { src: 'https://images.unsplash.com/photo-1497366811360-5c52c61b6c1d?auto=format&fit=crop&w=900&q=85', alt: 'Arquitectura interior de líneas limpias' },
-      { src: 'https://images.unsplash.com/photo-1497215842964-222b430dc094?auto=format&fit=crop&w=700&q=85', alt: 'Oficina luminosa con plantas' },
-      { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85', alt: 'Detalle de un espacio creativo' },
+      { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
+      { src: 'https://medios.presidencia.gub.uy/tav_portal/2025/noticias/AN_559/fgr_09.jpg', alt: 'Espacio de trabajo moderno' },
+      { src: 'https://www.gub.uy/sites/gubuy/files/styles/listado_contenedores/public/imagenes/noticias/U%2BI%20en%20Antel%20Summit%20%283%29_0.jpeg?itok=7HzOzt4p', alt: 'Mesa de trabajo junto a una ventana' },
     ],
   },
   {
     number: '03',
-    eyebrow: 'Cierre',
-    title: 'El escenario está listo para tu historia.',
-    copy: 'Reemplaza estas placas por el contenido definitivo de tu presentación.',
+    eyebrow: '',
+    title: 'Tercera placa',
+    copy: 'Descripción.',
     images: [
-      { src: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=85', alt: 'Espacio abierto de diseño' },
-      { src: 'https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=700&q=85', alt: 'Interior cálido y minimalista' },
-      { src: 'https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=700&q=85', alt: 'Sala de trabajo contemporánea' },
+      { src: 'https://www.gub.uy/sites/gubuy/files/inline-images/gili%20en%20lanzamiento.png', alt: 'Interior contemporáneo con luz natural' },
+      { src: 'https://medios.presidencia.gub.uy/tav_portal/2025/noticias/AN_559/fgr_09.jpg', alt: 'Espacio de trabajo moderno' },
+      { src: 'https://www.gub.uy/sites/gubuy/files/styles/listado_contenedores/public/imagenes/noticias/U%2BI%20en%20Antel%20Summit%20%283%29_0.jpeg?itok=7HzOzt4p', alt: 'Mesa de trabajo junto a una ventana' },
     ],
   },
 ]
