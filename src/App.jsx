@@ -109,24 +109,41 @@ function App() {
       >
         <p className="slide-number">{slide.number} / 0{slides.length}</p>
         <div className="slide-stage">
-          <div className="slide" key={slide.number}>
-            <p className="slide-eyebrow">{slide.eyebrow}</p>
+          <div className="slide">
+            {slide.eyebrow && (
+              <BlurText
+                key={`eyebrow-${slide.number}`}
+                text={slide.eyebrow}
+                className="slide-eyebrow"
+                animateBy="words"
+                direction="top"
+                delay={80}
+              />
+            )}
             <BlurText
-              key={slide.number}
+              key={`title-${slide.number}`}
               text={slide.title}
               className="slide-title"
               animateBy="words"
               direction="top"
               delay={120}
             />
-            <p className="slide-copy">{slide.copy}</p>
+            <BlurText
+              key={`copy-${slide.number}`}
+              text={slide.copy}
+              className="slide-copy"
+              animateBy="words"
+              direction="top"
+              delay={80}
+            />
           </div>
 
           <div className={`collage collage-${slide.number}`} aria-label={`Imágenes de la placa ${slide.number}`}>
             {slide.images.map((image, index) => (
               <div
-                key={image.src}
-                className={`collage-frame collage-frame-${index + 1}`}
+                key={`${slide.number}-${index}`}
+                className={`collage-frame collage-frame-${index + 1} collage-frame-animated`}
+                style={{ '--collage-delay': `${0.12 + index * 0.12}s` }}
               >
                 <img className="collage-image" src={image.src} alt={image.alt} />
               </div>

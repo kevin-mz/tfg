@@ -62,6 +62,7 @@
 
 .slide-eyebrow {
   margin-bottom: 18px;
+  font-family: 'Space Grotesk', sans-serif;
   color: rgba(255, 255, 255, 0.76);
 }
 
@@ -80,10 +81,52 @@
   gap: 0 0.25em;
 }
 
+.blur-text-word {
+  display: inline-block;
+  opacity: 0;
+  filter: blur(10px);
+  animation: blur-text-in var(--blur-text-duration, 0.35s) ease-out var(--blur-text-delay, 0s) forwards;
+  will-change: transform, filter, opacity;
+}
+
+.blur-text-from-top {
+  transform: translateY(-50px);
+}
+
+.blur-text-from-bottom {
+  transform: translateY(50px);
+}
+
+.collage-frame-animated {
+  opacity: 0;
+  filter: blur(10px);
+  transform: translateY(50px);
+  animation: blur-text-in 0.7s ease-out var(--collage-delay, 0s) forwards;
+  will-change: transform, filter, opacity;
+}
+
+@keyframes blur-text-in {
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .blur-text-word,
+  .collage-frame-animated {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    animation: none;
+  }
+}
+
 .slide-copy {
   max-width: 430px;
   margin: 28px 0 0;
-  font: 400 18px/1.5 'Nunito', sans-serif;
+  font: 400 18px/1.5 'Space Grotesk', sans-serif;
 }
 
 .collage {
